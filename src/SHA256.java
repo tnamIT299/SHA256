@@ -74,33 +74,33 @@ public class SHA256 {
 
         tbinary3.add(new StringBuilder(tailleSt));
 
-        ArrayList<String> mbape = new ArrayList<>();
-        ArrayList<String> grizman = new ArrayList<>();
+        ArrayList<String> arrayList_1 = new ArrayList<>();
+        ArrayList<String> arrayList_2 = new ArrayList<>();
         for (StringBuilder stringBuilder : tbinary3) {
-            String messi = stringBuilder.toString();
-            mbape.add(messi);
+            String abc = stringBuilder.toString();
+            arrayList_1.add(abc);
         }
 
         for(int i = 0 ; i < 64 ; i+=4){
             if(i < 60) {
-                grizman.add(mbape.get(i) + mbape.get(i + 1) + mbape.get(i + 2) + mbape.get(i + 3));
+                arrayList_2.add(arrayList_1.get(i) + arrayList_1.get(i + 1) + arrayList_1.get(i + 2) + arrayList_1.get(i + 3));
             }
             else {
                 StringBuilder str = new StringBuilder();
-                int normalsize = grizman.get(13).length()-mbape.get(15).length();
+                int normalsize = arrayList_2.get(13).length()-arrayList_1.get(15).length();
                 int j = 0;
-                String tailleTAb = mbape.get(511);
+                String tailleTAb = arrayList_1.get(511);
                 while(j < normalsize){
                     String var = "0";
                     str.append(var);
                     j++;
                 }
-                grizman.add(str+tailleTAb);
+                arrayList_2.add(str+tailleTAb);
             }
         }
-        ArrayList<Long> pepe = new ArrayList<>();
+        ArrayList<Long> arrayList_3 = new ArrayList<>();
 
-        for (String value : grizman) {
+        for (String value : arrayList_2) {
             StringBuilder valueBuilder = new StringBuilder(value);
             while(valueBuilder.length() != 32) {
                 valueBuilder.insert(0, "0");
@@ -108,27 +108,27 @@ public class SHA256 {
             value = valueBuilder.toString();
 
             for (int i = 0; i < value.length(); i++) {
-                pepe.add(Long.parseLong(String.valueOf(value.charAt(i))));
+                arrayList_3.add(Long.parseLong(String.valueOf(value.charAt(i))));
             }
         }
 
         byte [] bapon = new byte[32];
         int x = 0;
 
-        ArrayList<byte[]> casillas = new ArrayList<>();
+        ArrayList<byte[]> arrayList_4 = new ArrayList<>();
 
-        for (Long aLong : pepe) {
+        for (Long aLong : arrayList_3) {
 
             bapon[x] = Byte.parseByte(String.valueOf(aLong));
             x++;
 
             if (x == 32) {
-                casillas.add(bapon);
+                arrayList_4.add(bapon);
                 bapon = new byte[32];
                 x = 0;
             }
         }
-        return casillas;
+        return arrayList_4;
     }
 
 
@@ -155,10 +155,10 @@ public class SHA256 {
         System.arraycopy(t,0,tfinal,0,t.length-n);
 
         while(tfinal.length < 32){
-            byte[] messi = new byte[tfinal.length+1];
-            System.arraycopy(tfinal,0,messi,1,tfinal.length);
-            messi[0] = 0;
-            tfinal = messi;
+            byte[] bytes = new byte[tfinal.length+1];
+            System.arraycopy(tfinal,0,bytes,1,tfinal.length);
+            bytes[0] = 0;
+            tfinal = bytes;
         }
 
         return tfinal;
